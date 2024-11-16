@@ -137,3 +137,68 @@ The Library API enables users to view books and authors, while providing library
   - `Content-Type: application/json`
 - **Request Body Parameters:**
   - `token` (string): Authorization token.
+
+### 10. Register Book
+- **Method:** `POST`
+- **Endpoint:** `/book/register`
+- **Description:** Allows users to register a new book in the database by providing a title and linking it to an existing author. A valid authorization token is required for this action.
+- **Request Headers:**
+  - `Content-Type: application/json`
+- **Request Body Parameters:**
+  - `token` (string): Authorization token for the user.
+  - `title` (string): Title of the book.
+  - `author_id` (integer): ID of the author to whom the book is linked.
+- **Responses:**
+  - **200 OK:** `{ "status": "success", "token": "<new_token>", "data": null }`
+  - **401 Unauthorized (Token Missing):** `{ "status": "fail", "data": { "title": "Token missing in payload" } }`
+  - **400 Bad Request (Title or Author ID Missing):** `{ "status": "fail", "data": { "title": "Title or Author ID missing in payload" } }`
+  - **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - **400 Bad Request (Book Already Exists):** `{ "status": "fail", "data": { "title": "Book already exists" } }`
+  - **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+
+### 11. Show Books
+- **Method:** `GET`
+- **Endpoint:** `/book/show`
+- **Description:** Fetches and returns a list of all books in the database. A valid authorization token is required to access the list.
+- **Request Headers:**
+  - `Authorization: Bearer <token>`
+- **Responses:**
+  - **200 OK:** `{ "status": "success", "token": "<new_token>", "data": [{ "book_id": 1, "title": "Book Title", "author_id": 2 }, ...] }`
+  - **401 Unauthorized (Authorization Header Missing):** `{ "status": "fail", "data": { "title": "Authorization header missing" } }`
+  - **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - **404 Not Found (No Books Found):** `{ "status": "fail", "message": "No books found" }`
+  - **500 Internal Server Error:** `{ "status": "fail", "message": "<error message>" }`
+
+### 12. Update Book
+- **Method:** `PUT`
+- **Endpoint:** `/book/update`
+- **Description:** Updates the details of an existing book, including its title and associated author. A valid authorization token is required along with the book ID in the request body.
+- **Request Payload:**
+  - JSON body containing:
+    - `token`: The authorization token (required)
+    - `book_id`: The ID of the book to update (required)
+    - `title`: The new title for the book (required)
+    - `author_id`: The new author ID for the book (required)
+- **Responses:**
+  - **200 OK:** `{ "status": "success", "token": "<new_token>", "data": null }`
+  - **401 Unauthorized (Token Missing):** `{ "status": "fail", "data": { "title": "Token missing in payload" } }`
+  - **400 Bad Request (Book ID Missing):** `{ "status": "fail", "data": { "title": "Book ID missing in payload" } }`
+  - **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+
+### 13. Delete Book
+- **Method:** `DELETE`
+- **Endpoint:** `/book/delete`
+- **Description:** Deletes a specific book by its ID. This operation requires a valid authorization token and the book's ID to be provided in the payload.
+- **Request Payload:**
+  - JSON body containing:
+    - `token`: The authorization token (required)
+    - `book_id`: The ID of the book to delete (required)
+- **Responses:**
+  - **200 OK:** `{ "status": "success", "token": "<new_token>", "data": null }`
+  - **400 Bad Request (Invalid JSON Payload):** `{ "status": "fail", "data": { "title": "Invalid JSON payload" } }`
+  - **401 Unauthorized (Token Missing):** `{ "status": "fail", "data": { "title": "Token missing in payload" } }`
+  - **400 Bad Request (Book ID Missing):** `{ "status": "fail", "data": { "title": "Book ID missing in payload" } }`
+  - **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+
