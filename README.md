@@ -202,3 +202,6 @@ The Library API enables users to view books and authors, while providing library
   - **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
   - **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
 
+**Developed by:**
+  
+**JOWILL DAVE B. ESTACIO -4B
