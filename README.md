@@ -2,6 +2,8 @@
 
 The Library API enables users to view books and authors, while providing library administrators with the tools to manage them. The API includes endpoints for user registration, authentication, and book management.
 
+---
+
 ## Endpoints Overview
 
 ### 1. Register a New User
