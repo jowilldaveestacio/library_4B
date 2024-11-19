@@ -94,22 +94,4 @@ Welcome to the **Library API** documentation. This API enables users to view boo
 
 ---
 
-## 🌟 Additional Endpoints
 
-Explore more endpoints for managing authors and books in the complete documentation. Each includes structured request and response examples for seamless integration.
-
----
-
-## 🔐 Security Notes
-Always secure sensitive data like tokens and passwords. Use HTTPS and verify token validity before making sensitive requests.
-
----
-
-## 🛠️ API Integration Tips
-- Ensure the `Content-Type` header matches the required format.
-- Use valid tokens for all protected endpoints.
-- Follow the correct HTTP method for each endpoint.
-
----
-
-Crafted for developers 🚀. Happy coding!
