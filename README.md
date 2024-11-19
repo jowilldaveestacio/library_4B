@@ -94,4 +94,180 @@ Welcome to the **Library API** documentation. This API enables users to view boo
 
 ---
 
+### **6️⃣ Add a New Book**
+- **Method:** `POST`
+- **Endpoint:** `/books/add`
+- **Description:** Add a new book to the library. Requires admin authorization.
+- **Request Headers:**
+  - `Authorization`: `Bearer <token>`
+  - `Content-Type`: `application/json`
+- **Request Body Parameters:**
+  - `title` *(string)*: Title of the book.
+  - `author_id` *(integer)*: ID of the author.
+  - `isbn` *(string)*: ISBN number of the book.
+  - `published_date` *(string, YYYY-MM-DD)*: Published date of the book.
+- **Responses:**
+  - ✅ **200 OK:** `{ "status": "success", "data": null }`
+  - 🚫 **400 Bad Request (Invalid Data):** `{ "status": "fail", "data": { "title": "Invalid data" } }`
+  - 🚫 **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - 🚫 **403 Forbidden:** `{ "status": "fail", "data": { "title": "Unauthorized action" } }`
+  - ⚠️ **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+
+---
+
+### **7️⃣ Get All Books**
+- **Method:** `GET`
+- **Endpoint:** `/books`
+- **Description:** Retrieve a list of all books in the library.
+- **Request Headers:**
+  - `Authorization`: `Bearer <token>`
+  - `Content-Type`: `application/json`
+- **Responses:**
+  - ✅ **200 OK:** 
+    ```json
+    { 
+      "status": "success", 
+      "data": [
+        { "book_id": "<book_id>", "title": "<title>", "author": "<author>", "isbn": "<isbn>", "published_date": "<published_date>" }, 
+        ... 
+      ] 
+    }
+    ```
+  - 🚫 **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - ⚠️ **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+
+---
+
+### **8️⃣ Get Book by ID**
+- **Method:** `GET`
+- **Endpoint:** `/books/<book_id>`
+- **Description:** Retrieve a book by its unique ID.
+- **Request Headers:**
+  - `Authorization`: `Bearer <token>`
+  - `Content-Type`: `application/json`
+- **Responses:**
+  - ✅ **200 OK:** 
+    ```json
+    { 
+      "status": "success", 
+      "data": { 
+        "book_id": "<book_id>", 
+        "title": "<title>", 
+        "author": "<author>", 
+        "isbn": "<isbn>", 
+        "published_date": "<published_date>" 
+      }
+    }
+    ```
+  - 🚫 **404 Not Found (Book Not Found):** `{ "status": "fail", "data": { "title": "Book not found" } }`
+  - 🚫 **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - ⚠️ **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+
+---
+
+### **9️⃣ Update a Book**
+- **Method:** `PUT`
+- **Endpoint:** `/books/update/<book_id>`
+- **Description:** Update details of an existing book. Requires admin authorization.
+- **Request Headers:**
+  - `Authorization`: `Bearer <token>`
+  - `Content-Type`: `application/json`
+- **Request Body Parameters:**
+  - `title` *(string)*: New title of the book.
+  - `author_id` *(integer)*: New author ID.
+  - `isbn` *(string)*: New ISBN number.
+  - `published_date` *(string, YYYY-MM-DD)*: New published date.
+- **Responses:**
+  - ✅ **200 OK:** `{ "status": "success", "data": null }`
+  - 🚫 **400 Bad Request (Invalid Data):** `{ "status": "fail", "data": { "title": "Invalid data" } }`
+  - 🚫 **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - 🚫 **403 Forbidden:** `{ "status": "fail", "data": { "title": "Unauthorized action" } }`
+  - ⚠️ **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+
+---
+
+### **🔟 Delete a Book**
+- **Method:** `DELETE`
+- **Endpoint:** `/books/delete/<book_id>`
+- **Description:** Delete a book from the library collection. Requires admin authorization.
+- **Request Headers:**
+  - `Authorization`: `Bearer <token>`
+  - `Content-Type`: `application/json`
+- **Responses:**
+  - ✅ **200 OK:** `{ "status": "success", "data": null }`
+  - 🚫 **400 Bad Request (Invalid JSON Payload):** `{ "status": "fail", "data": { "title": "Invalid JSON payload" } }`
+  - 🚫 **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - 🚫 **403 Forbidden:** `{ "status": "fail", "data": { "title": "Unauthorized action" } }`
+  - ⚠️ **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+
+---
+
+### **1️⃣1️⃣ Add an Author**
+- **Method:** `POST`
+- **Endpoint:** `/authors/add`
+- **Description:** Add a new author to the library system. Requires admin authorization.
+- **Request Headers:**
+  - `Authorization`: `Bearer <token>`
+  - `Content-Type`: `application/json`
+- **Request Body Parameters:**
+  - `name` *(string)*: Name of the author.
+  - `biography` *(string)*: Short biography of the author.
+  - `birthdate` *(string, YYYY-MM-DD)*: Birthdate of the author.
+- **Responses:**
+  - ✅ **200 OK:** `{ "status": "success", "data": null }`
+  - 🚫 **400 Bad Request (Invalid Data):** `{ "status": "fail", "data": { "title": "Invalid data" } }`
+  - 🚫 **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - 🚫 **403 Forbidden:** `{ "status": "fail", "data": { "title": "Unauthorized action" } }`
+  - ⚠️ **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+
+---
+
+### **1️⃣2️⃣ Get All Authors**
+- **Method:** `GET`
+- **Endpoint:** `/authors`
+- **Description:** Retrieve a list of all authors in the library.
+- **Request Headers:**
+  - `Authorization`: `Bearer <token>`
+  - `Content-Type`: `application/json`
+- **Responses:**
+  - ✅ **200 OK:** 
+    ```json
+    { 
+      "status": "success", 
+      "data": [
+        { "author_id": "<author_id>", "name": "<name>", "biography": "<biography>", "birthdate": "<birthdate>" }, 
+        ... 
+      ] 
+    }
+    ```
+  - 🚫 **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - ⚠️ **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+
+---
+
+### **1️⃣3️⃣ Get Author by ID**
+- **Method:** `GET`
+- **Endpoint:** `/authors/<author_id>`
+- **Description:** Retrieve details of a specific author by their unique ID.
+- **Request Headers:**
+  - `Authorization`: `Bearer <token>`
+  - `Content-Type`: `application/json`
+- **Responses:**
+  - ✅ **200 OK:** 
+    ```json
+    { 
+      "status": "success", 
+      "data": { 
+        "author_id": "<author_id>", 
+        "name": "<name>", 
+        "biography": "<biography>", 
+        "birthdate": "<birthdate>" 
+      }
+    }
+    ```
+  - 🚫 **404 Not Found (Author Not Found):** `{ "status": "fail", "data": { "title": "Author not found" } }`
+  - 🚫 **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
+  - ⚠️ **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+
+
 
