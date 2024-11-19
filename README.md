@@ -270,7 +270,7 @@ Welcome to the **Library API** documentation. This API enables users to view boo
   - ⚠️ **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
  
   ---
-  ### **Developed by:**
+  ### **Built by:**
 
 **JOWILL DAVE B. ESTACIO - 4B**
 
