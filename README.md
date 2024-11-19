@@ -268,6 +268,11 @@ Welcome to the **Library API** documentation. This API enables users to view boo
   - 🚫 **404 Not Found (Author Not Found):** `{ "status": "fail", "data": { "title": "Author not found" } }`
   - 🚫 **401 Unauthorized (Invalid/Expired Token):** `{ "status": "fail", "data": { "title": "Invalid or expired token" } }`
   - ⚠️ **500 Internal Server Error:** `{ "status": "fail", "data": { "title": "<error message>" } }`
+ 
+  ---
+  ### **Developed by:**
+
+**JOWILL DAVE B. ESTACIO - 4B**
 
 
 
